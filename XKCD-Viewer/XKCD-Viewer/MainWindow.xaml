@@ -6,6 +6,81 @@
         xmlns:local="clr-namespace:XKCD_Viewer" WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" FontSize="22" Loaded="Window_Loaded"
         Title="XKCD WebToon Viewer" Height="800" Width="800">
+    <Window.Resources>
+        <Style x:Key="btnHint" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="Border"
+                            Background="Transparent"
+                            CornerRadius="3"
+                            BorderBrush="Transparent"
+                            BorderThickness="1">
+
+                            <Grid Height="50">
+                                <Grid>
+                                    <Grid Margin="7 0 20 13">
+                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                      VerticalAlignment="Center"
+                                                      Cursor="IBeam"/>
+                                        <TextBlock x:Name="WaterMark" Foreground="#C2C2C2"
+                                                   Margin="2 0 0 0"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="Collapsed"
+                                                   FontFamily="나눔스퀘어_ac"
+                                                   Text="{TemplateBinding Tag}"/>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="WaterMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="removeBtnHighLightStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="btnRoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border CornerRadius="30" 
+                                    BorderThickness="1"
+                                    Background="White">
+
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -14,17 +89,65 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <Button x:Name="btnPreviousImage" Padding="15" Margin="15"
-                        Click="btnPreviousImage_Click">Previous</Button>
+            <Button x:Name="btnPreviousImage" Padding="15" Margin="15" 
+                    Height="60" Width="60" HorizontalAlignment="Center"
+                    Click="btnPreviousImage_Click" Style="{StaticResource btnRoundCorner}">&lt;</Button>
         </Grid>
         
         <Grid Grid.Column="1">
-            <Image x:Name="imgComic"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderBrush="Black" BorderThickness="0,0,0,1" Width="405">
+                    <TextBox x:Name="tbSearchComic"
+                             Style="{StaticResource btnHint}"
+                             Tag="보고싶은 화의 페이지 번호를 입력해 주세요."/>
+                </Border>
+                <Button Grid.Column="1" VerticalAlignment="Center" Click="btnSpecificComicImageSearch_Click"
+                        FocusVisualStyle="{x:Null}"
+                        Style="{StaticResource removeBtnHighLightStyle}">검색</Button>
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Image x:Name="imgComic" Margin="5"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="FontFamily" Value="나눔스퀘어_ac"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                    </Style>
+                </Grid.Resources>
+                <Button x:Name="btnStartImage" Style="{StaticResource removeBtnHighLightStyle}"
+                        HorizontalAlignment="Left" Margin="20,0,0,0"
+                        Click="btnStartImage_Click">첫 화</Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock x:Name="tbComicPageNum"/>
+                    <TextBlock Text=" / " xml:space="preserve"/>
+                    <TextBlock x:Name="tbMaxComicPageNum"/>
+                </StackPanel>
+                <Button x:Name="btnEndImage" Style="{StaticResource removeBtnHighLightStyle}"
+                        HorizontalAlignment="Right" Margin="0,0,20,0"
+                        Click="btnEndImage_Click">마지막 화</Button>
+            </Grid>
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Column="2">
             <Button x:Name="btnNextImage" Padding="15" Margin="15"
-                        Click="btnNextImage_Click">Next</Button>
+                    Height="60" Width="60" HorizontalAlignment="Center"
+                    Click="btnNextImage_Click" Style="{StaticResource btnRoundCorner}">&gt;</Button>
         </Grid>
     </Grid>
 </Window>
