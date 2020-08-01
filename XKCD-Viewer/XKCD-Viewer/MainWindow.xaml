@@ -19,7 +19,7 @@
 
                             <Grid Height="50">
                                 <Grid>
-                                    <Grid Margin="7 0 20 13">
+                                    <Grid Margin="7 0 20 6">
                                         <ScrollViewer x:Name="PART_ContentHost"
                                                       VerticalAlignment="Center"
                                                       Cursor="IBeam"/>
@@ -91,6 +91,7 @@
         <Grid Grid.Column="0">
             <Button x:Name="btnPreviousImage" Padding="15" Margin="15" 
                     Height="60" Width="60" HorizontalAlignment="Center"
+                    FocusVisualStyle="{x:Null}"
                     Click="btnPreviousImage_Click" Style="{StaticResource btnRoundCorner}">&lt;</Button>
         </Grid>
         
@@ -106,14 +107,15 @@
                     <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" BorderBrush="Black" BorderThickness="0,0,0,1" Width="405">
-                    <TextBox x:Name="tbSearchComic"
+                <Border Grid.Column="0" BorderBrush="Black" BorderThickness="0,0,0,1" Width="405"
+                        HorizontalAlignment="Right">
+                    <TextBox x:Name="tbSearchComic" 
                              Style="{StaticResource btnHint}"
                              Tag="보고싶은 화의 페이지 번호를 입력해 주세요."/>
                 </Border>
-                <Button Grid.Column="1" VerticalAlignment="Center" Click="btnSpecificComicImageSearch_Click"
-                        FocusVisualStyle="{x:Null}"
-                        Style="{StaticResource removeBtnHighLightStyle}">검색</Button>
+                <Button Grid.Column="1" Click="btnSpecificComicImageSearch_Click"
+                        FocusVisualStyle="{x:Null}" VerticalAlignment="Center"
+                        Style="{StaticResource removeBtnHighLightStyle}">이동</Button>
             </Grid>
             
             <Grid Grid.Row="1">
@@ -131,7 +133,7 @@
                     </Style>
                 </Grid.Resources>
                 <Button x:Name="btnStartImage" Style="{StaticResource removeBtnHighLightStyle}"
-                        HorizontalAlignment="Left" Margin="20,0,0,0"
+                        HorizontalAlignment="Left" Margin="40,0,0,0"
                         Click="btnStartImage_Click">첫 화</Button>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock x:Name="tbComicPageNum"/>
@@ -139,7 +141,7 @@
                     <TextBlock x:Name="tbMaxComicPageNum"/>
                 </StackPanel>
                 <Button x:Name="btnEndImage" Style="{StaticResource removeBtnHighLightStyle}"
-                        HorizontalAlignment="Right" Margin="0,0,20,0"
+                        HorizontalAlignment="Right" Margin="0,0,40,0"
                         Click="btnEndImage_Click">마지막 화</Button>
             </Grid>
         </Grid>
@@ -147,6 +149,7 @@
         <Grid Grid.Column="2">
             <Button x:Name="btnNextImage" Padding="15" Margin="15"
                     Height="60" Width="60" HorizontalAlignment="Center"
+                    FocusVisualStyle="{x:Null}"
                     Click="btnNextImage_Click" Style="{StaticResource btnRoundCorner}">&gt;</Button>
         </Grid>
     </Grid>

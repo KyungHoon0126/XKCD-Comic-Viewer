@@ -90,7 +90,7 @@ namespace XKCD_Viewer
         {
             if(currentNumber == 0)
             {
-                MessageBox.Show("이미 첫화 페이지 입니다.");
+                MessageBox.Show("이미 첫 화 페이지 입니다.");
             }
 
             var comic = await ComicProcessor.LoadComic(614);
