@@ -10,7 +10,7 @@
 |Development Tool|WPF, Visual Studio|
 
 ## UI / UX
-- - XKCD-Comic-Viewer 실행 화면
+- XKCD-Comic-Viewer 실행 화면
 
 <img src="https://user-images.githubusercontent.com/48943501/89119268-ee5fa180-d4e7-11ea-9514-1175d3d1f83f.PNG" width="60%"></img>
 <img src="https://user-images.githubusercontent.com/48943501/89119271-f881a000-d4e7-11ea-9bfb-ba3fb2b1d5d4.PNG" width="60%"></img>
