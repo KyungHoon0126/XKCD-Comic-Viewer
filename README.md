@@ -16,4 +16,4 @@
 <img src="https://user-images.githubusercontent.com/48943501/89119271-f881a000-d4e7-11ea-9bfb-ba3fb2b1d5d4.PNG" width="60%"></img>
 
 ## 개발 포스트
-- INFO, YOU(Tistory) [🖼 XKCD Comic-Viewer 제작](https://devkyunghoon.tistory.com) (예정)
+- INFO, YOU(Tistory) [XKCD Comic-Viewer 제작 🖼](https://devkyunghoon.tistory.com/11)
